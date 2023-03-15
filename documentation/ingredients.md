@@ -1,0 +1,4 @@
+- go backend
+- react + MaterialUi
+- Deta Space— Personal Cloud
+- 
