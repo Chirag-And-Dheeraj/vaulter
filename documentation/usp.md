@@ -1,0 +1,6 @@
+- open source
+	- publically verifiable product
+	- privacy focused
+- self host
+	- freedom to customize
+	- 

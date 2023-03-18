@@ -1,3 +1,8 @@
+- Images --> Photos    |
+- Videos --> Movies    | --> Memories?
+- Audio --> Songs       |
+- PDFs --> Documents
+
 - chunked uploads for—
 	- images
 	- videos
@@ -7,12 +12,23 @@
 	- can be decrypted and formed back to file only on client
 - self-host
 	- raspberry-pi
+	- organization/group/family/friends
+		- one user account + pool storage (don't track who uploaded/deleted/modified) ? granular permissions? download only?
+		- different accounts + pool storage (track who uploaded/deleted/modified)— regular version
+		- different accounts + partitioned storage— VaulterPRO
 	- options to host on—
 		- GCP
 		- AWS
 
-
-- Images --> Photos    |
-- Videos --> Movies    | --> Memories?
-- Audio --> Songs       |
-- PDFs --> Documents
+- folder structure—
+	- user_root_folder (~/)
+		- file_1 (~/file_1)
+		- file_2
+		- ...
+		- file_n
+		- folder_1 (~/folder_1)
+			- folder_1_file_1(~/folder_1/folder_1_file_1)
+			- ...
+		- folder_2
+		- ...
+		- folder_n

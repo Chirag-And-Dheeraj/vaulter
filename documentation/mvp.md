@@ -1,0 +1,22 @@
+
+- login
+- ability to create folder
+- upload files
+- upload files in folder
+- delete
+- rename
+- update—
+	- if file_name is same, ask
+		- update/replace
+		- keep both
+- upload folders
+- open files
+	- text files (.txt, .md, .c, .py, .java, ...)
+	- images (.png, .jpg, .svg)
+	- audio/video
+	- pdfs
+	- other docs
+- space consumed
+	- total_combined
+	- according to file_type
+	- according to folder
