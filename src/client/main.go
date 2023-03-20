@@ -14,6 +14,7 @@ func setUpRoutes(r *mux.Router) {
 	r.HandleFunc("/setup", SetupHandler).Methods("GET")
 	r.HandleFunc("/vault", VaultHandler).Methods("GET")
 	r.HandleFunc("/viewer", ViewerHandler).Methods("GET")
+	r.HandleFunc("/dashboard", DashboardHandler).Methods("GET")
 	http.Handle("/", r)
 	log.Println("Routes set.")
 }
@@ -29,7 +30,7 @@ func LandingHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
+	if r.URL.Path != "/login" {
 		return
 	} else if r.Method == "GET" {
 		log.Println("GET: " + r.URL.Path)
@@ -39,7 +40,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func SetupHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
+	if r.URL.Path != "/setup" {
 		return
 	} else if r.Method == "GET" {
 		log.Println("GET: " + r.URL.Path)
@@ -49,7 +50,7 @@ func SetupHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func VaultHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
+	if r.URL.Path != "/vault" {
 		return
 	} else if r.Method == "GET" {
 		log.Println("GET: " + r.URL.Path)
@@ -59,11 +60,21 @@ func VaultHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ViewerHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
+	if r.URL.Path != "/viewer" {
 		return
 	} else if r.Method == "GET" {
 		log.Println("GET: " + r.URL.Path)
 		p := "./pages/viewer.html"
+		http.ServeFile(w, r, p)
+	}
+}
+
+func DashboardHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/dashboard" {
+		return
+	} else if r.Method == "GET" {
+		log.Println("GET: " + r.URL.Path)
+		p := "./pages/dashboard.html"
 		http.ServeFile(w, r, p)
 	}
 }

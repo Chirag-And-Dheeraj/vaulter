@@ -40,7 +40,7 @@
 	- (/login) ==> login.html ==> login page
 		- when visiting login^ if make db call, check if master account does not exist, redirect (/setup)
 	- (/setup) ==> setup.html ==> register page
-	- (/open/{file-hash}) ==> viewer.html ==> file viewing page
+	- (/viewer/{file-hash}) ==> viewer.html ==> file viewing page
 
 - pages
 	- index.html
@@ -48,3 +48,4 @@
 	- login.html
 	- setup.html
 	- viewer.html
+	- dashboard.html
