@@ -32,3 +32,19 @@
 		- folder_2
 		- ...
 		- folder_n
+
+- flow
+	- (/) ==> index.html ==> landing page
+	- (/vault) ==> vault.html ==> actual vault
+		- when visiting vault^ if session not exist, redirect (/login)
+	- (/login) ==> login.html ==> login page
+		- when visiting login^ if make db call, check if master account does not exist, redirect (/setup)
+	- (/setup) ==> setup.html ==> register page
+	- (/open/{file-hash}) ==> viewer.html ==> file viewing page
+
+- pages
+	- index.html
+	- vault.html
+	- login.html
+	- setup.html
+	- viewer.html
