@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"os"
 	. "server/types"
@@ -17,11 +17,14 @@ var users = map[string]string{
 }
 
 func Signup(w http.ResponseWriter, r *http.Request) {
+	log.Println("Signing you up")
 	var creds Credentials
 
 	err := json.NewDecoder(r.Body).Decode(&creds)
 
 	if err != nil {
+		log.Println(err)
+		log.Println("#")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -35,12 +38,12 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
-
-	tokenString, err := token.SignedString(os.Getenv("JWT_SECRET"))
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	key := []byte(os.Getenv("JWT_SECRET"))
+	tokenString, err := token.SignedString(key)
 
 	if err != nil {
+		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -92,44 +95,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		Expires: expirationTime,
 	})
 }
-
-func Protect(w http.ResponseWriter, r *http.Request) {
-	c, err := r.Cookie("token")
-	if err != nil {
-		if err == http.ErrNoCookie {
-			w.WriteHeader(http.StatusUnauthorized)
-			return
-		}
-		
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	tokenStr := c.Value
-
-	claims := &Claims{}
-
-	token, err := jwt.ParseWithClaims(tokenStr, claims, func(t *jwt.Token) (interface{}, error) {
-		return os.Getenv("JWT_SECRET"), nil
-	})
-
-	if err != nil {
-		if err == jwt.ErrSignatureInvalid {
-			w.WriteHeader(http.StatusUnauthorized)
-			return
-		}
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	if !token.Valid {
-		w.WriteHeader(http.StatusUnauthorized)
-		return
-	}
-
-	w.Write([]byte(fmt.Sprintf("Welcome %s!", claims.Username)))
-}
-
 
 func Refresh(w http.ResponseWriter, r *http.Request) {
 
