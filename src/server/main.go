@@ -15,12 +15,15 @@ import (
 func main() {
 
 	loadEnvVars()
-	database.Connect()
-	http.HandleFunc("/signup", handlers.Signup)
+	db := database.Connect()
+	http.HandleFunc("/signup", func(w http.ResponseWriter, r *http.Request) {
+		handlers.SignUp(w, r, db)
+	})
 	http.HandleFunc("/signin", handlers.Login)
 	http.HandleFunc("/refresh", handlers.Refresh)
 	http.HandleFunc("/logout", handlers.Logout)
 
+	log.Println("Server is running on http://127.0.0.1:8888")
 	log.Fatal(http.ListenAndServe(":8888", nil))
 }
 

@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"os"
 	. "server/types"
@@ -14,45 +13,6 @@ import (
 var users = map[string]string{
 	"user1": "password1",
 	"user2": "password2",
-}
-
-func Signup(w http.ResponseWriter, r *http.Request) {
-	log.Println("Signing you up")
-	var creds Credentials
-
-	err := json.NewDecoder(r.Body).Decode(&creds)
-
-	if err != nil {
-		log.Println(err)
-		log.Println("#")
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
-
-	expirationTime := time.Now().Add(5 * time.Minute)
-
-	claims := &Claims{
-		Username: creds.Username,
-		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(expirationTime),
-		},
-	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	key := []byte(os.Getenv("JWT_SECRET"))
-	tokenString, err := token.SignedString(key)
-
-	if err != nil {
-		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	http.SetCookie(w, &http.Cookie{
-		Name:    "token",
-		Value:   tokenString,
-		Expires: expirationTime,
-	})
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {

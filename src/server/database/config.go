@@ -1,38 +1,23 @@
 package database
 
 import (
-	"database/sql"
 	"log"
 
+	M "server/database/models"
+
 	_ "github.com/mattn/go-sqlite3"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
-func Connect() *sql.DB {
+func Connect() *gorm.DB {
 	log.Println("Initializing SQLite database...")
-	db, err := sql.Open("sqlite3", "database.db")
-
+	db, err := gorm.Open(sqlite.Open("database.db"), &gorm.Config{})
 	if err != nil {
-		log.Fatal(err)
+		log.Panic(err)
 	}
 
-	table, err := db.Prepare(`CREATE TABLE IF NOT EXISTS users
-	(
-		id TEXT PRIMARY KEY,
-		first_name TEXT,
-		last_name TEXT,
-		email TEXT,
-		pin TEXT,
-		profile_photo BLOB,
-		profile_creation_time TEXT,
-		active TINYINT
-	)`)
-
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer table.Close()
-	table.Exec()
+	db.AutoMigrate(&M.User{})
 
 	log.Println("Database initialized.")
 	return db
