@@ -15,7 +15,7 @@ func setUpRoutes(r *mux.Router) {
 	r.HandleFunc("/vault", VaultHandler).Methods("GET")
 	r.HandleFunc("/viewer", ViewerHandler).Methods("GET")
 	r.HandleFunc("/dashboard", DashboardHandler).Methods("GET")
-	http.Handle("/", r)
+	// http.Handle("/", r)
 	log.Println("Routes set.")
 }
 
