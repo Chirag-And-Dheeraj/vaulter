@@ -10,19 +10,38 @@ import (
 
 	// "server/middlewares"
 	"server/database"
+
+	"github.com/gorilla/mux"
+	"gorm.io/gorm"
 )
 
-func main() {
+func setUpRoutes(r *mux.Router, db *gorm.DB) {
+	log.Println("Setting up routes...")
+	r.HandleFunc("/signup", func(w http.ResponseWriter, r *http.Request) {
+		handlers.SignUp(w, r, db)
+	}).Methods("POST")
+	r.HandleFunc("/signin", handlers.Login).Methods("POST")
+	r.HandleFunc("/refresh", handlers.Refresh)
+	r.HandleFunc("/logout", handlers.Logout)
+	r.HandleFunc("/file/metadata/", func(w http.ResponseWriter, r *http.Request) {
+		handlers.Metadata(w, r, db)
+	}).Methods("GET", "POST")
 
+	log.Println("Routes set.")
+}
+
+func initServer() {
+	log.Println("Vaulter is coming...")
+	log.Println("Initializing server...")
 	loadEnvVars()
 	db := database.Connect()
-	http.HandleFunc("/signup", func(w http.ResponseWriter, r *http.Request) {
-		handlers.SignUp(w, r, db)
-	})
-	http.HandleFunc("/signin", handlers.Login)
-	http.HandleFunc("/refresh", handlers.Refresh)
-	http.HandleFunc("/logout", handlers.Logout)
+	r := mux.NewRouter()
+	http.Handle("/", r)
+	setUpRoutes(r, db)
+}
 
+func main() {
+	initServer()
 	log.Println("Server is running on http://127.0.0.1:8888")
 	log.Fatal(http.ListenAndServe(":8888", nil))
 }

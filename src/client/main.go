@@ -81,7 +81,7 @@ func DashboardHandler(w http.ResponseWriter, r *http.Request) {
 
 func initServer() {
 	log.Println("Vaulter is coming...")
-	log.Println("Initializing server...")
+	log.Println("Initializing client...")
 	// utils.LoadEnvVars()
 	// db := database.Connect()
 	r := mux.NewRouter()
@@ -90,6 +90,6 @@ func initServer() {
 
 func main() {
 	initServer()
-	log.Println("Server is running on http://127.0.0.1:7777")
+	log.Println("Client is running on http://127.0.0.1:7777")
 	log.Fatal(http.ListenAndServe("127.0.0.1:7777", nil))
 }

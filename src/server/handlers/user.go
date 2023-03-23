@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 	m "server/database/models"
-	. "server/types"
+	"server/types"
 
 	"github.com/go-playground/validator"
 	"gorm.io/gorm"
@@ -15,7 +15,7 @@ import (
 func SignUp(w http.ResponseWriter, r *http.Request, db *gorm.DB) {
 	log.Println("Signing you up")
 
-	var profile_data User
+	var profile_data types.User
 
 	switch r.Method {
 
