@@ -18,6 +18,7 @@ func Connect() *gorm.DB {
 	}
 
 	db.AutoMigrate(&M.User{})
+	db.AutoMigrate(&M.File{})
 
 	log.Println("Database initialized.")
 	return db
