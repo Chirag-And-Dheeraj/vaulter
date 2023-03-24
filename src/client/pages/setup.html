@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;500;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/setup.css">
     <title>Vaulter</title>
 </head>
+
 <body>
-    <h1>Vaulter is coming :)</h1>
-    <a href="/">landing</a> | 
-    <a href="/login">login</a> | 
-    <a href="/setup">setup</a> | 
-    <a href="/vault">vault</a> | 
-    <a href="/viewer">viewer</a> | 
-    <a href="/dashboard">dashboard</a>
-    <br>
-    <hr>
-    <h2>setup</h2>
     <section>
         <form>
-            <input type="text" title="first name" placeholder="John" /> <br><br>
-            <input type="text" title="last name" placeholder="Doe" /> <br><br>
-            <input type="email" title="email" placeholder="john@example.com" /> <br><br>
-            <input type="password" title="password" placeholder="password" /> <br><br>
-            <input type="password" title="confirm password" placeholder="re enter password" /> <br><br>
-            <input type="submit" title="login">
+            <h2>Vaulter — Setup</h2>
+            <div>
+                <input type="text" title="first name" placeholder="John" />
+                <input type="text" title="last name" placeholder="Doe" />
+            </div>
+            <input type="email" title="email" placeholder="john@example.com" />
+            <div>
+                <input type="password" title="pin" placeholder="pin" />
+                <input type="password" title="confirm pin" placeholder="re enter pin" />
+            </div>
+            <input type="submit" title="setup" value="setup">
         </form>
     </section>
 </body>
+
 </html>

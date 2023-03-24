@@ -10,13 +10,43 @@ import (
 func setUpRoutes(r *mux.Router) {
 	log.Println("Setting up routes...")
 	r.HandleFunc("/", LandingHandler).Methods("GET")
+	r.HandleFunc("/assets/{filename}", AssetsHandler).Methods("GET")
+	r.HandleFunc("/scripts/{filename}", ScriptsHandler).Methods("GET")
+	r.HandleFunc("/styles/{filename}", StylesHandler).Methods("GET")
 	r.HandleFunc("/login", LoginHandler).Methods("GET")
 	r.HandleFunc("/setup", SetupHandler).Methods("GET")
 	r.HandleFunc("/vault", VaultHandler).Methods("GET")
 	r.HandleFunc("/viewer", ViewerHandler).Methods("GET")
 	r.HandleFunc("/dashboard", DashboardHandler).Methods("GET")
-	// http.Handle("/", r)
+	http.Handle("/", r)
 	log.Println("Routes set.")
+}
+
+func AssetsHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/octet-stream")
+	vars := mux.Vars(r)
+	filename := vars["filename"]
+	p := "./assets/" + filename
+	log.Println("GET: " + p)
+	http.ServeFile(w, r, p)
+}
+
+func ScriptsHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/javascript")
+	vars := mux.Vars(r)
+	filename := vars["filename"]
+	p := "./scripts/" + filename
+	log.Println("GET: " + p)
+	http.ServeFile(w, r, p)
+}
+
+func StylesHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/css")
+	vars := mux.Vars(r)
+	filename := vars["filename"]
+	p := "./styles/" + filename
+	log.Println("GET: " + p)
+	http.ServeFile(w, r, p)
 }
 
 func LandingHandler(w http.ResponseWriter, r *http.Request) {
