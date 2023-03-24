@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"server/types"
+	. "server/types"
 
 	"gorm.io/gorm"
 )
@@ -13,7 +13,7 @@ import (
 func Metadata(w http.ResponseWriter, r *http.Request, db *gorm.DB) {
 	log.Println("Uploading file")
 
-	var meta_data types.File
+	var meta_data File
 
 	switch r.Method {
 
