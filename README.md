@@ -13,6 +13,7 @@ The project is still under construction. We appreciate your patience.
 
 Vaulter is an open sourced, web-based file collection and storage server. It gives you freedom to store and access your files from any browser, anywhere. It's like your personal Google Drive!
 
+The presentation for Vaulter can be found [here](https://docs.google.com/presentation/d/10mVA3UtZ7ypxRj_MYcE27NBlk2hSUNPV92l1zwNPKik)
 
 ## See an important document/image/video/audio?
 - Just #VaulterIt
