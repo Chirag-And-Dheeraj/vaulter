@@ -1,3 +1,5 @@
+![[buildspace]]
+
 - Images --> Photos    |
 - Videos --> Movies    | --> Memories?
 - Audio --> Songs       |
