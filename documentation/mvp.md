@@ -5,7 +5,7 @@
 - upload files in folder
 - delete
 - rename
-- update—
+- update —
 	- if file_name is same, ask
 		- update/replace
 		- keep both
