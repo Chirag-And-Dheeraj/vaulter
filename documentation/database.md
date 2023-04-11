@@ -14,7 +14,7 @@
 - owner (foreignkey User.id)
 - size
 - type
-- parent_folder(foreignkey Folder.id)
+- parent_folder(foreignkey File.id)
 - upload_time
 - modified_time
 
