@@ -1,16 +1,15 @@
-import Image from "next/image";
+import Item from "./Item";
 
 const Files = () => {
     return (
-        <main>
-            <button className="fixed bottom-20 right-8 border-2 p-2 rounded-md bg-gray-100" >
-                <Image
-                    src="/icons/plus.svg"
-                    alt="Plus Icon"
-                    width={24}
-                    height={24}
-                ></Image>
-            </button>
+        <main className="p-3 md:col-start-4 md:col-end-13 lg:col-start-3">
+            <Item name="Folder 1" lastModified="12 May 2022" size="122 MB" icon="files-filled" />
+            <Item name="Folder 2" lastModified="1 May 2022" size="12 MB" icon="files-filled" />
+            <Item name="File 1" lastModified="10 June 2022" size="12 KB" icon="document" />
+            {/* <Item name="File 1" lastModified="10 June 2022" size="12 KB" icon="document" />
+            <Item name="File 1" lastModified="10 June 2022" size="12 KB" icon="document" />
+            <Item name="File 1" lastModified="10 June 2022" size="12 KB" icon="document" />
+            <Item name="File 1" lastModified="10 June 2022" size="12 KB" icon="document" /> */}
         </main>
     );
 };
