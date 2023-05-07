@@ -17,13 +17,13 @@ const Item = ({ name, lastModified, size, icon }) => {
                         Modified {lastModified}
                     </small>
                 </div>
-                <div className="hidden sm:block sm:col-start-7 sm:col-end-9 md:justify-self-start">
+                <div className="hidden sm:block sm:col-start-7 sm:col-end-9 md:col-start-6 md:justify-self-start">
                     {lastModified}
                 </div>
                 <div className="hidden sm:block col-start-10 col-end-12 md:justify-self-start">
                     {size}
                 </div>
-                <button className="col-start-12 col-end-13 md:justify-self-end">
+                <button className="col-start-12 col-end-13 sm:justify-self-end">
                     <Image
                         src="/icons/dots.svg"
                         width={24}

@@ -5,10 +5,10 @@ import Link from "next/link"
 
 const SiteNav = () => {
     return (
-        <nav className="absolute bottom-0 p-2 w-full bg-gray-100 grid grid-cols-4 justify-center text-black border-t border-gray-300 md:static md:h-screen md:row-start-1 md:row-span-full md:col-start-1 md:col-end-4 md:flex md:flex-col md:justify-start md:space-y-2 lg:col-end-3">
-            <Link href="/" className="hidden md:flex md:place-items-center md:p-3">
+        <nav className="absolute bottom-0 p-2 w-full bg-slate-100 grid grid-cols-4 justify-center text-black border-t border-gray-300 md:bg-white md:border-0 md:border-r-2 md:static md:h-screen md:col-start-1 md:col-end-4 md:flex md:flex-col md:justify-start md:space-y-2 lg:col-end-3">
+            <Link href="/" className="hidden md:flex md:place-items-center">
                 <Image
-                    className="md:col-span-2 md:rounded-full md:my-2"
+                    className="md:col-span-2 md:rounded-full md:my-4"
                     src="/logo.png"
                     alt="Vaulter Logo"
                     width={40}
